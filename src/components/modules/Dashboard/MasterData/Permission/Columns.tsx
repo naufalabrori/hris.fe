@@ -1,23 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
-import { Menu } from '@/types/Menu/type';
+import { Permission } from '@/types/Permission/type';
 import { useMemo } from 'react';
 import { formatDateTime } from '@/lib/functions';
-import { UpdateMenuForm } from './UpdateForm';
 import { usePermissionStore } from '@/store/permissionStore';
 import { ProtectedComponent } from '@/components/common/ProtectedComponent';
-import { DeleteMenuAlert } from './DeleteAlert';
+import { UpdatePermissionForm } from './UpdateForm';
 
-interface ColumnMenu {
+interface ColumnPermission {
   currentPage: number;
   perPage: number;
 }
 
-export const MenuColumns = ({ currentPage, perPage }: ColumnMenu) => {
+export const PermissionColumns = ({ currentPage, perPage }: ColumnPermission) => {
   const { hasPermission } = usePermissionStore();
 
-  const columns = useMemo<ColumnDef<any, Menu>[]>(
+  const columns = useMemo<ColumnDef<any, Permission>[]>(
     () => [
       {
         id: 'numbers',
@@ -29,8 +28,16 @@ export const MenuColumns = ({ currentPage, perPage }: ColumnMenu) => {
         },
       },
       {
-        accessorKey: 'menuName',
-        header: () => 'Menu Name',
+        accessorKey: 'permissionName',
+        header: () => 'Permission Name',
+      },
+      {
+        accessorKey: 'resource',
+        header: () => 'Menu',
+      },
+      {
+        accessorKey: 'action',
+        header: () => 'Operation',
       },
       {
         accessorKey: 'createdDate',
@@ -42,25 +49,24 @@ export const MenuColumns = ({ currentPage, perPage }: ColumnMenu) => {
         header: () => 'Modified Date',
         cell: ({ row }) => formatDateTime(row.getValue('modifiedDate')),
       },
-      ...(hasPermission('VIEW.MENU')
+      ...(hasPermission('VIEW.PERMISSION')
         ? [
             {
               id: 'actions',
               header: 'Action',
               cell: (info: any) => {
-                const { id, menuName } = info.row.original;
+                const { id, permissionName, resource, action } = info.row.original;
 
                 const masterData = {
                   id,
-                  menuName,
+                  permissionName,
+                  resource,
+                  action,
                 };
                 return (
                   <>
-                    <ProtectedComponent permission="VIEW.MENU">
-                      <UpdateMenuForm data={masterData} />
-                    </ProtectedComponent>
-                    <ProtectedComponent permission="VIEW.MENU">
-                      <DeleteMenuAlert id={id} />
+                    <ProtectedComponent permission="VIEW.PERMISSION">
+                      <UpdatePermissionForm data={masterData} />
                     </ProtectedComponent>
                   </>
                 );

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Loader2, PenIcon } from 'lucide-react';
 
@@ -15,20 +14,26 @@ import {
 import { ChangeEvent, useEffect, useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateMenu } from '@/hooks/Services/Menu/useCreateUpdateMenu';
+import { useCreateUpdatePermission } from '@/hooks/Services/Permission/useCreateUpdatePermission';
 import { toast } from 'react-toastify';
-import { Menu } from '@/types/Menu/type';
 import InputField from '@/components/common/Input/InputField';
+import { useListMenu } from '@/hooks/Services/Menu/useGetMenus';
+import Autocomplete from '@/components/common/AutoComplete/Autocomplete';
+import { Permission } from '@/types/Permission/type';
 
-const MenuSchema = z.object({
-  menuName: z.string({ required_error: 'Menu Name is required' }).min(1, 'Menu Name is required'),
+const PermissionSchema = z.object({
+  permissionName: z
+    .string({ required_error: 'Permission Name is required' })
+    .min(1, 'Permission Name is required'),
+  resource: z.string({ required_error: 'Resource is required' }).min(1, 'Resource is required'),
+  action: z.string({ required_error: 'Action is required' }).min(1, 'Action is required'),
 });
 
-type MenuFormValues = z.infer<typeof MenuSchema>;
+type PermissionFormValues = z.infer<typeof PermissionSchema>;
 
-export function UpdateMenuForm({ data }: { data: Menu }) {
-  const [form, setForm] = useState<Partial<MenuFormValues>>({});
-  const [errors, setErrors] = useState<Partial<Record<keyof MenuFormValues, string>>>({});
+export function UpdatePermissionForm({ data }: { data: Permission }) {
+  const [form, setForm] = useState<Partial<PermissionFormValues>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof PermissionFormValues, string>>>({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -46,10 +51,10 @@ export function UpdateMenuForm({ data }: { data: Menu }) {
     }));
   };
 
-  const { mutate, isPending } = useCreateUpdateMenu(data?.id);
+  const { mutate, isPending } = useCreateUpdatePermission(data.id);
 
   const handleSubmit = () => {
-    const result = MenuSchema.safeParse(form);
+    const result = PermissionSchema.safeParse(form);
 
     if (!result.success) {
       const validationErrors = result.error.errors.reduce(
@@ -64,9 +69,9 @@ export function UpdateMenuForm({ data }: { data: Menu }) {
       mutate(form, {
         onSuccess: () => {
           queryClient.invalidateQueries({
-            queryKey: ['get-list-menu'],
+            queryKey: ['get-list-permission'],
           });
-          toast('Menu Updated Successfully', { type: 'success' });
+          toast('Permission Created Successfully', { type: 'success' });
         },
         onError: (error: any) => {
           toast(
@@ -84,6 +89,14 @@ export function UpdateMenuForm({ data }: { data: Menu }) {
     }
   };
 
+  const params: any = {
+    limit: 1000,
+    sortBy: 'menuName',
+    isDesc: false,
+  };
+
+  const { data: listMenu } = useListMenu(params);
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
@@ -98,18 +111,58 @@ export function UpdateMenuForm({ data }: { data: Menu }) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader className="mb-2">
-          <DialogTitle>Update Menu</DialogTitle>
+          <DialogTitle>Update Permission</DialogTitle>
         </DialogHeader>
         <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Menu Name</div>
+          <div className="col-span-2">Permission Name</div>
           <div className="col-span-3">
             <InputField
-              placeholder="Insert Menu Name"
+              placeholder="Insert Permission Name"
               type="text"
-              name="menuName"
-              value={form.menuName || ''}
+              name="permissionName"
+              value={form?.permissionName || ''}
               onChange={onChange}
-              error={errors.menuName}
+              error={errors.permissionName}
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-5 gap-2">
+          <div className="col-span-2">Resource</div>
+          <div className="col-span-3">
+            <Autocomplete
+              label="Menu"
+              placeholder="Select Menu..."
+              data={
+                listMenu?.data.map((item) => ({
+                  value: [item.menuName],
+                  label: item.menuName,
+                })) || []
+              }
+              selectedValue={form?.resource}
+              onSelect={(currentValue) => {
+                setForm((prev) => ({
+                  ...prev,
+                  resource: currentValue,
+                }));
+                setErrors((prevErrors) => ({
+                  ...prevErrors,
+                  resource: undefined,
+                }));
+              }}
+              error={errors.resource}
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-5 gap-2">
+          <div className="col-span-2">Action</div>
+          <div className="col-span-3">
+            <InputField
+              placeholder="Insert Action"
+              type="text"
+              name="action"
+              value={form.action || ''}
+              onChange={onChange}
+              error={errors.action}
             />
           </div>
         </div>

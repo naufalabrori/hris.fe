@@ -38,6 +38,11 @@ const menus = [
         permission: 'VIEW.ROLE',
       },
       {
+        title: 'Permission',
+        url: '/masterdata/permission',
+        permission: 'VIEW.PERMISSION',
+      },
+      {
         title: 'Menu',
         url: '/masterdata/menu',
         permission: 'VIEW.MENU',

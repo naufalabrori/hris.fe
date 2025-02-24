@@ -31,13 +31,9 @@ axiosClient.interceptors.request.use(
 
       if (authToken) {
         config.headers['Authorization'] = `Bearer ${authToken}`;
-        // For debugging:
-        console.log('Token being set:', authToken);
-        console.log('Headers:', config.headers);
       }
     } catch (error) {
       console.error('Error parsing auth cookie:', error);
-      console.error('Cookie value:', cookies.get(AUTH_COOKIES_KEY));
     }
     return config;
   },
