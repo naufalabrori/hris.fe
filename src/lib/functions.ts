@@ -1,7 +1,9 @@
+import CryptoJS from 'crypto-js';
 import { createJSONStorage } from 'zustand/middleware';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || '';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const minValue = (val: number, min: number) => {
@@ -16,7 +18,7 @@ export const formatDateTime = (isoString: string) => {
 
   const date = new Date(isoString);
   const year = date.getFullYear();
-  const month = date.toLocaleString('en-US', { month: 'short' }); // Menggunakan format bulan singkat (Jul, Aug, etc.)
+  const month = date.toLocaleString('en-US', { month: 'short' });
   const day = String(date.getDate()).padStart(2, '0');
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -59,15 +61,17 @@ export function objectToFormData(obj: any) {
 }
 
 export const cookieStorage = createJSONStorage(() => ({
-  getItem: (name): string | null => {
-    const value = cookies.get(name);
-    return value ? JSON.stringify(value) : null;
+  getItem: (name) => {
+    const encryptedData = cookies.get(name);
+    if (!encryptedData) return null;
+    return decryptData(encryptedData);
   },
   setItem: (name, value) => {
-    cookies.set(name, JSON.parse(value), {
+    const encryptedValue = encryptData(value);
+    cookies.set(name, encryptedValue, {
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
       path: '/',
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'strict',
     });
   },
@@ -75,3 +79,21 @@ export const cookieStorage = createJSONStorage(() => ({
     cookies.remove(name, { path: '/' });
   },
 }));
+
+export const encryptData = (data: any) => {
+  if (!ENCRYPTION_KEY) {
+    throw new Error('Encryption key is not defined in environment variables');
+  }
+  return CryptoJS.AES.encrypt(JSON.stringify(data), ENCRYPTION_KEY).toString();
+};
+
+export const decryptData = (encryptedData: any) => {
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, ENCRYPTION_KEY);
+    const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+    return JSON.parse(decryptedData);
+  } catch (error) {
+    console.error('Decryption error:', error);
+    return null;
+  }
+};
