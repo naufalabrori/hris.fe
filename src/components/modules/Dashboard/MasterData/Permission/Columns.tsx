@@ -49,7 +49,7 @@ export const PermissionColumns = ({ currentPage, perPage }: ColumnPermission) =>
         header: () => 'Modified Date',
         cell: ({ row }) => formatDateTime(row.getValue('modifiedDate')),
       },
-      ...(hasPermission('VIEW.PERMISSION')
+      ...(hasPermission('UPDATE.PERMISSION')
         ? [
             {
               id: 'actions',
@@ -65,7 +65,7 @@ export const PermissionColumns = ({ currentPage, perPage }: ColumnPermission) =>
                 };
                 return (
                   <>
-                    <ProtectedComponent permission="VIEW.PERMISSION">
+                    <ProtectedComponent permission="UPDATE.PERMISSION">
                       <UpdatePermissionForm data={masterData} />
                     </ProtectedComponent>
                   </>

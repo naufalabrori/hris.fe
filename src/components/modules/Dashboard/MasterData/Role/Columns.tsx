@@ -46,7 +46,7 @@ export const RoleColumns = ({ currentPage, perPage }: ColumnRole) => {
         header: () => 'Modified Date',
         cell: ({ row }) => formatDateTime(row.getValue('modifiedDate')),
       },
-      ...(hasPermission('VIEW.ROLE')
+      ...(hasPermission('UPDATE.ROLE')
         ? [
             {
               id: 'actions',
