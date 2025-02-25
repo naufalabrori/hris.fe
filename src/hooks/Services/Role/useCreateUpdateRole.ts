@@ -4,7 +4,7 @@ import axiosClient from '@/lib/axiosClient';
 import { useMutation } from '@tanstack/react-query';
 import { Role } from '@/types/Role/type';
 
-const createUpdateRole = async (data: Role, id?: number) => {
+const createUpdateRole = async (data: Role, id?: string) => {
   if (id) {
     const res = await axiosClient.put(`/Role/${id}`, data).then((res: any) => {
       return res.data;
@@ -20,7 +20,7 @@ const createUpdateRole = async (data: Role, id?: number) => {
   }
 };
 
-export function useCreateUpdateRole(id?: number) {
+export function useCreateUpdateRole(id?: string) {
   return useMutation({
     mutationFn: (data: any) => createUpdateRole(data, id),
   });

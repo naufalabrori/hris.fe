@@ -1,8 +1,7 @@
 'use client';
-import { ProtectedComponent } from '@/components/common/ProtectedComponent';
-import { Button } from '@/components/ui/button';
 import { useUserPermission } from '@/hooks/Services/Permission/useGetUserPermission';
 import { PERMISSION_COOKIES_KEY } from '@/lib/constant';
+import { useAuthStore } from '@/store/authStore';
 import { usePermissionStore } from '@/store/permissionStore';
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
@@ -12,6 +11,8 @@ const cookies = new Cookies();
 export default function Dashboard() {
   const [isPermissionExist, setIsPermissionExist] = useState(false);
   const { data: permissions } = useUserPermission({ enabled: isPermissionExist });
+
+  const { user } = useAuthStore();
 
   const { setPermissions } = usePermissionStore();
 
@@ -31,10 +32,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <p>Dashboard</p>
-      <ProtectedComponent permission="CREATE.USER">
-        <Button>click me</Button>
-      </ProtectedComponent>
+      <p>Welcome {user?.username}</p>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import axiosClient from '@/lib/axiosClient';
 import { useMutation } from '@tanstack/react-query';
 import { Permission } from '@/types/Permission/type';
 
-const createUpdatePermission = async (data: Permission, id?: number) => {
+const createUpdatePermission = async (data: Permission, id?: string) => {
   if (id) {
     const res = await axiosClient.put(`/Permission/${id}`, data).then((res: any) => {
       return res.data;
@@ -20,7 +20,7 @@ const createUpdatePermission = async (data: Permission, id?: number) => {
   }
 };
 
-export function useCreateUpdatePermission(id?: number) {
+export function useCreateUpdatePermission(id?: string) {
   return useMutation({
     mutationFn: (data: any) => createUpdatePermission(data, id),
   });

@@ -42,7 +42,7 @@ export const MenuColumns = ({ currentPage, perPage }: ColumnMenu) => {
         header: () => 'Modified Date',
         cell: ({ row }) => formatDateTime(row.getValue('modifiedDate')),
       },
-      ...(hasPermission('VIEW.MENU')
+      ...(hasPermission('UPDATE.MENU') || hasPermission('DELETE.MENU')
         ? [
             {
               id: 'actions',
@@ -56,10 +56,10 @@ export const MenuColumns = ({ currentPage, perPage }: ColumnMenu) => {
                 };
                 return (
                   <>
-                    <ProtectedComponent permission="VIEW.MENU">
+                    <ProtectedComponent permission="UPDATE.MENU">
                       <UpdateMenuForm data={masterData} />
                     </ProtectedComponent>
-                    <ProtectedComponent permission="VIEW.MENU">
+                    <ProtectedComponent permission="DELETE.MENU">
                       <DeleteMenuAlert id={id} />
                     </ProtectedComponent>
                   </>

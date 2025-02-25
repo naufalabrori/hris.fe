@@ -4,7 +4,7 @@ import axiosClient from '@/lib/axiosClient';
 import { useMutation } from '@tanstack/react-query';
 import { Menu } from '@/types/Menu/type';
 
-const createUpdateMenu = async (data: Menu, id?: number) => {
+const createUpdateMenu = async (data: Menu, id?: string) => {
   if (id) {
     const res = await axiosClient.put(`/Menu/${id}`, data).then((res: any) => {
       return res.data;
@@ -20,7 +20,7 @@ const createUpdateMenu = async (data: Menu, id?: number) => {
   }
 };
 
-export function useCreateUpdateMenu(id?: number) {
+export function useCreateUpdateMenu(id?: string) {
   return useMutation({
     mutationFn: (data: any) => createUpdateMenu(data, id),
   });

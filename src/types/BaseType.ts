@@ -1,5 +1,5 @@
 export type BaseType = {
-  id?: number;
+  id?: string;
   isActive?: boolean;
   createdBy?: string;
   createdByName?: string;
