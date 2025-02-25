@@ -3,6 +3,7 @@ import { Outfit } from 'next/font/google';
 import '@/styles/globals.css';
 import { ToastContainer } from 'react-toastify';
 import { QueryProvider } from './QueryClientProvider';
+import NextTopLoader from 'nextjs-toploader';
 
 const outfit = Outfit({ subsets: ['latin'], weight: ['400', '600', '700'] });
 
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <NextTopLoader />
+          {children}
+        </QueryProvider>
         <ToastContainer />
       </body>
     </html>

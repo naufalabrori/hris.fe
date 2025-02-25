@@ -15,6 +15,7 @@ import {
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { usePermissionStore } from '@/store/permissionStore';
+import Image from 'next/image';
 
 const menus = [
   {
@@ -121,7 +122,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader></SidebarHeader>
+      <SidebarHeader>
+        <div className="flex justify-center items-center w-full">
+          <Image src="/kny.png" alt="logo" width={50} height={50} />
+        </div>
+      </SidebarHeader>
       <SidebarMenu>
         {filteredMenus.map((item) => {
           if (item.items && item.items.length > 0) {
@@ -150,7 +155,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             isActive={pathname.includes(subItem.url)}
                             className="pl-2"
                           >
-                            <Link href={`/dashboard${subItem.url}`}>{subItem.title}</Link>
+                            <Link href={`/dashboard${subItem.url}`} prefetch>
+                              {subItem.title}
+                            </Link>
                           </SidebarMenuButton>
                         </SidebarMenuSubItem>
                       ))}
@@ -168,7 +175,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 isActive={pathname.includes(item.url) && item.url != '/'}
               >
                 <div className="flex w-7">{item.icon}</div>
-                <Link href={`/dashboard/${item.url}`}>{item.title}</Link>
+                <Link href={`/dashboard/${item.url}`} prefetch>
+                  {item.title}
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           );
