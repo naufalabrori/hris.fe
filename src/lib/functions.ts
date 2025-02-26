@@ -11,7 +11,7 @@ export const minValue = (val: number, min: number) => {
   return val;
 };
 
-export const formatDateTime = (isoString: string) => {
+export const formatDateTime = (isoString: string | null) => {
   if (isoString == null) {
     return '-';
   }
@@ -26,7 +26,7 @@ export const formatDateTime = (isoString: string) => {
   return `${day} ${month} ${year} ${hours}:${minutes}`;
 };
 
-export const formatDate = (isoString: string) => {
+export const formatDate = (isoString: string | null) => {
   if (isoString == null) {
     return '-';
   }

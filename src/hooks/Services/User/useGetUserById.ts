@@ -7,7 +7,7 @@ export type UserResponse = User & {};
 
 async function getUser<T>(id?: string): Promise<T> {
   return await axiosClient.get(`/User/${id}`).then((res: any) => {
-    return res.data;
+    return res.data.data;
   });
 }
 
