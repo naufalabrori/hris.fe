@@ -21,12 +21,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { NumberOfShowTable } from '@/lib/constant';
-import { RoleColumns } from './Columns';
+import { UserColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { Role } from '@/types/Role/type';
-import { useListRole } from '@/hooks/Services/Role/useGetRoles';
+import { User } from '@/types/User/type';
+import { useListUser } from '@/hooks/Services/User/useGetUsers';
 import SearchInputField from '@/components/common/Input/SearchInputField';
 
 interface UseTableDataReturn<TData> {
@@ -52,7 +52,7 @@ function useTableData<TData>(
     [filter.key]: filter.value || '',
   };
 
-  const { data: queryData, error, isLoading } = useListRole(params);
+  const { data: queryData, error, isLoading } = useListUser(params);
 
   useEffect(() => {
     if (queryData) {
@@ -64,11 +64,11 @@ function useTableData<TData>(
   return { data, total, loading: isLoading, error };
 }
 
-export function RoleDataTable() {
+export function UserDataTable() {
   const [totalData, setTotalData] = useState(0);
   const [limit, setLimit] = useState<string>('5');
   const [sorting, setSorting] = useState<SortingState>([{ id: 'createdDate', desc: true }]);
-  const [filterBy, setFilterBy] = useState<string>('roleName');
+  const [filterBy, setFilterBy] = useState<string>('username');
   const [filterValue, setFilterValue] = useState<string>('');
   const [debounceFilter] = useDebounce(filterValue, 1000);
 
@@ -77,12 +77,12 @@ export function RoleDataTable() {
     Number(limit)
   );
 
-  const { data, total, loading, error } = useTableData<Role>(sorting, pagination, {
+  const { data, total, loading, error } = useTableData<User>(sorting, pagination, {
     key: filterBy,
     value: debounceFilter,
   });
 
-  const columns: ColumnDef<any, Role>[] = RoleColumns({
+  const columns: ColumnDef<any, User>[] = UserColumns({
     currentPage,
     perPage: Number(limit),
   });
@@ -98,7 +98,10 @@ export function RoleDataTable() {
     },
   });
 
-  const dataColumnFiltering = [{ key: 'roleName', value: 'Role Name' }];
+  const dataColumnFiltering = [
+    { key: 'username', value: 'User Name' },
+    { key: 'email', value: 'Email' },
+  ];
 
   useEffect(() => {
     setTotalData(total);

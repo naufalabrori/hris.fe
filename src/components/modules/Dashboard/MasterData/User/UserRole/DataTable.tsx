@@ -21,12 +21,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { NumberOfShowTable } from '@/lib/constant';
-import { RoleColumns } from './Columns';
+import { UserRoleColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { Role } from '@/types/Role/type';
-import { useListRole } from '@/hooks/Services/Role/useGetRoles';
+import { UserRole } from '@/types/UserRole/type';
+import { useListUserRole } from '@/hooks/Services/UserRole/useGetUserRoles';
 import SearchInputField from '@/components/common/Input/SearchInputField';
 
 interface UseTableDataReturn<TData> {
@@ -39,7 +39,8 @@ interface UseTableDataReturn<TData> {
 function useTableData<TData>(
   sorting: SortingState,
   pagination: PaginationParams,
-  filter: any
+  filter: any,
+  userId: string
 ): UseTableDataReturn<TData> {
   const [data, setData] = useState<TData[]>([]);
   const [total, setTotal] = useState(0);
@@ -50,9 +51,10 @@ function useTableData<TData>(
     sortBy: sortField?.id || 'createdDate',
     isDesc: sortField?.desc || false,
     [filter.key]: filter.value || '',
+    userId: userId,
   };
 
-  const { data: queryData, error, isLoading } = useListRole(params);
+  const { data: queryData, error, isLoading } = useListUserRole(params);
 
   useEffect(() => {
     if (queryData) {
@@ -64,7 +66,7 @@ function useTableData<TData>(
   return { data, total, loading: isLoading, error };
 }
 
-export function RoleDataTable() {
+export function UserRoleDataTable({ userId }: { userId: string }) {
   const [totalData, setTotalData] = useState(0);
   const [limit, setLimit] = useState<string>('5');
   const [sorting, setSorting] = useState<SortingState>([{ id: 'createdDate', desc: true }]);
@@ -77,12 +79,17 @@ export function RoleDataTable() {
     Number(limit)
   );
 
-  const { data, total, loading, error } = useTableData<Role>(sorting, pagination, {
-    key: filterBy,
-    value: debounceFilter,
-  });
+  const { data, total, loading, error } = useTableData<UserRole>(
+    sorting,
+    pagination,
+    {
+      key: filterBy,
+      value: debounceFilter,
+    },
+    userId
+  );
 
-  const columns: ColumnDef<any, Role>[] = RoleColumns({
+  const columns: ColumnDef<any, UserRole>[] = UserRoleColumns({
     currentPage,
     perPage: Number(limit),
   });
