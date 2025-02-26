@@ -32,9 +32,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuthStore();
 
   const handleLogout = () => {
-    cookies.remove(PERMISSION_COOKIES_KEY);
-    cookies.remove(AUTH_COOKIES_KEY);
-    cookies.remove(USER_COOKIES_KEY);
+    cookies.remove(PERMISSION_COOKIES_KEY, { path: '/' });
+    cookies.remove(AUTH_COOKIES_KEY, { path: '/' });
+    cookies.remove(USER_COOKIES_KEY, { path: '/' });
     router.push('/login');
   };
 

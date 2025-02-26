@@ -4,6 +4,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { UserRole } from '@/types/UserRole/type';
 import { useMemo } from 'react';
 import { formatDateTime } from '@/lib/functions';
+import { ProtectedComponent } from '@/components/common/ProtectedComponent';
+import { DeleteUserRoleAlert } from './DeleteAlert';
+import { usePermissionStore } from '@/store/permissionStore';
 
 interface ColumnUserRole {
   currentPage: number;
@@ -11,6 +14,7 @@ interface ColumnUserRole {
 }
 
 export const UserRoleColumns = ({ currentPage, perPage }: ColumnUserRole) => {
+  const { hasPermission } = usePermissionStore();
   const columns = useMemo<ColumnDef<any, UserRole>[]>(
     () => [
       {
@@ -36,31 +40,27 @@ export const UserRoleColumns = ({ currentPage, perPage }: ColumnUserRole) => {
         header: () => 'Modified Date',
         cell: ({ row }) => formatDateTime(row.getValue('modifiedDate')),
       },
-      // ...(hasPermission('UPDATE.USER')
-      //   ? [
-      //       {
-      //         id: 'actions',
-      //         header: 'Action',
-      //         cell: (info: any) => {
-      //           const { id } = info.row.original;
+      ...(hasPermission('UPDATE.USER')
+        ? [
+            {
+              id: 'actions',
+              header: 'Action',
+              cell: (info: any) => {
+                const { id } = info.row.original;
 
-      //           return (
-      //             <>
-      //               <ProtectedComponent permission="VIEW.UserRole">
-      //                 <Link href={`${pathname}/${id}`}>
-      //                   <Button className="mr-1 bg-blue-500 hover:bg-blue-600 p-3">
-      //                     <EyeIcon />
-      //                   </Button>
-      //                 </Link>
-      //               </ProtectedComponent>
-      //             </>
-      //           );
-      //         },
-      //       },
-      //     ]
-      //   : []),
+                return (
+                  <>
+                    <ProtectedComponent permission="UPDATE.USER">
+                      <DeleteUserRoleAlert id={id} />
+                    </ProtectedComponent>
+                  </>
+                );
+              },
+            },
+          ]
+        : []),
     ],
-    [currentPage, perPage]
+    [currentPage, perPage, hasPermission]
   );
 
   return columns;

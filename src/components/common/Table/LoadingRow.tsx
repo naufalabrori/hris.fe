@@ -14,7 +14,7 @@ export function LoadingRow({ colSpan }: LoadingRowProps) {
             visible={true}
             height="50"
             width="50"
-            color="blue"
+            color="gray"
             ariaLabel="three-circles-loading"
             wrapperStyle={{}}
             wrapperClass=""
