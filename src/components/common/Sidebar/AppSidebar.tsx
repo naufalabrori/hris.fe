@@ -53,11 +53,6 @@ const menus = [
         url: '/masterdata/department',
         permission: 'VIEW.DEPARTMENT',
       },
-      {
-        title: 'Job Title',
-        url: '/masterdata/job-title',
-        permission: 'VIEW.JOB_TITLE',
-      },
     ],
   },
   {
@@ -91,17 +86,22 @@ const menus = [
   },
   {
     title: 'Human Resource',
-    url: 'human-resource',
+    url: 'hr',
     icon: <LayoutDashboardIcon />,
     items: [
       {
+        title: 'Job Title',
+        url: '/hr/job-title',
+        permission: 'VIEW.JOB_TITLE',
+      },
+      {
         title: 'Employee',
-        url: '/human-resource/employee',
+        url: '/hr/employee',
         permission: 'VIEW.EMPLOYEE',
       },
       {
         title: 'Recruitment',
-        url: '/human-resource/recruitment',
+        url: '/hr/recruitment',
         permission: 'VIEW.RECRUITMENT',
       },
     ],
