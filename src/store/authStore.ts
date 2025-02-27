@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { User } from '@/types/User/type';
+import { User } from '@/types/MasterData/User/type';
 import { USER_COOKIES_KEY } from '@/lib/constant';
 import { cookieStorage } from '@/lib/functions';
 

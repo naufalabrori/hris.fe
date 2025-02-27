@@ -14,7 +14,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateMenu } from '@/hooks/Services/Menu/useCreateUpdateMenu';
+import { useCreateUpdateMenu } from '@/hooks/Services/MasterData/Menu/useCreateUpdateMenu';
 import { toast } from 'react-toastify';
 import InputField from '@/components/common/Input/InputField';
 

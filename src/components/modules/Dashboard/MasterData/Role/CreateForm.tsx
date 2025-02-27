@@ -14,7 +14,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateRole } from '@/hooks/Services/Role/useCreateUpdateRole';
+import { useCreateUpdateRole } from '@/hooks/Services/MasterData/Role/useCreateUpdateRole';
 import { toast } from 'react-toastify';
 import InputField from '@/components/common/Input/InputField';
 

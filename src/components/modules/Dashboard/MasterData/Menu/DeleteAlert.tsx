@@ -12,7 +12,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { useDeleteMenu } from '@/hooks/Services/Menu/useDeleteMenu';
+import { useDeleteMenu } from '@/hooks/Services/MasterData/Menu/useDeleteMenu';
 import { useQueryClient } from '@tanstack/react-query';
 import { Trash2Icon } from 'lucide-react';
 import { useState } from 'react';

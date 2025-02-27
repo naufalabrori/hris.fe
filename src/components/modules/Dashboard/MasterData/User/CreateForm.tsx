@@ -14,10 +14,10 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateUser } from '@/hooks/Services/User/useCreateUpdateUser';
+import { useCreateUpdateUser } from '@/hooks/Services/MasterData/User/useCreateUpdateUser';
 import { toast } from 'react-toastify';
 import { EmployeeUserDataTable } from './CreateUser/DataTable';
-import { Employee } from '@/types/Employee/type';
+import { Employee } from '@/types/HumanResource/Employee/type';
 import InputField from '@/components/common/Input/InputField';
 
 const UserEmployeeSchema = z.object({

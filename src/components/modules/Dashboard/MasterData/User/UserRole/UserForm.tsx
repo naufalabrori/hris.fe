@@ -1,7 +1,7 @@
 import InputField from '@/components/common/Input/InputField';
-import { useGetUserById } from '@/hooks/Services/User/useGetUserById';
+import { useGetUserById } from '@/hooks/Services/MasterData/User/useGetUserById';
 import { formatDateTime } from '@/lib/functions';
-import { User } from '@/types/User/type';
+import { User } from '@/types/MasterData/User/type';
 import { useEffect, useState } from 'react';
 
 export const UserForm = ({ id }: { id: string }) => {

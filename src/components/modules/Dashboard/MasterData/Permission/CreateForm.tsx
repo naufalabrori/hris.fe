@@ -14,10 +14,10 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdatePermission } from '@/hooks/Services/Permission/useCreateUpdatePermission';
+import { useCreateUpdatePermission } from '@/hooks/Services/MasterData/Permission/useCreateUpdatePermission';
 import { toast } from 'react-toastify';
 import InputField from '@/components/common/Input/InputField';
-import { useListMenu } from '@/hooks/Services/Menu/useGetMenus';
+import { useListMenu } from '@/hooks/Services/MasterData/Menu/useGetMenus';
 import Autocomplete from '@/components/common/AutoComplete/Autocomplete';
 
 const PermissionSchema = z.object({

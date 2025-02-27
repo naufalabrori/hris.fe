@@ -26,8 +26,8 @@ import { MenuColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { Menu } from '@/types/Menu/type';
-import { useListMenu } from '@/hooks/Services/Menu/useGetMenus';
+import { Menu } from '@/types/MasterData/Menu/type';
+import { useListMenu } from '@/hooks/Services/MasterData/Menu/useGetMenus';
 
 interface UseTableDataReturn<TData> {
   data: TData[];

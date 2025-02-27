@@ -14,9 +14,9 @@ import {
 import { useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateUserRole } from '@/hooks/Services/UserRole/useCreateUpdateUserRole';
+import { useCreateUpdateUserRole } from '@/hooks/Services/MasterData/UserRole/useCreateUpdateUserRole';
 import { toast } from 'react-toastify';
-import { useListRole } from '@/hooks/Services/Role/useGetRoles';
+import { useListRole } from '@/hooks/Services/MasterData/Role/useGetRoles';
 import Autocomplete from '@/components/common/AutoComplete/Autocomplete';
 
 const UserRoleSchema = z.object({

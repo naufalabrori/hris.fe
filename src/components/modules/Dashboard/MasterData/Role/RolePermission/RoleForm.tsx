@@ -1,7 +1,7 @@
 import InputField from '@/components/common/Input/InputField';
-import { useGetRoleById } from '@/hooks/Services/Role/useGetRoleById';
+import { useGetRoleById } from '@/hooks/Services/MasterData/Role/useGetRoleById';
 import { formatDateTime } from '@/lib/functions';
-import { Role } from '@/types/Role/type';
+import { Role } from '@/types/MasterData/Role/type';
 import { useEffect, useState } from 'react';
 
 export const RoleForm = ({ id }: { id: string }) => {

@@ -11,7 +11,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { useDeleteUserRole } from '@/hooks/Services/UserRole/useDeleteUserRole';
+import { useDeleteUserRole } from '@/hooks/Services/MasterData/UserRole/useDeleteUserRole';
 import { useQueryClient } from '@tanstack/react-query';
 import { Trash2Icon } from 'lucide-react';
 import { useState } from 'react';

@@ -26,8 +26,8 @@ import { RolePermissionColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { RolePermissionExt } from '@/types/RolePermission/type';
-import { useListRolePermission } from '@/hooks/Services/RolePermission/useGetRolePermissions';
+import { RolePermissionExt } from '@/types/MasterData/RolePermission/type';
+import { useListRolePermission } from '@/hooks/Services/MasterData/RolePermission/useGetRolePermissions';
 
 interface UseTableDataReturn<TData> {
   data: TData[];

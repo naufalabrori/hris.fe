@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
-import { Menu } from '@/types/Menu/type';
+import { Menu } from '@/types/MasterData/Menu/type';
 import { useMemo } from 'react';
 import { formatDateTime } from '@/lib/functions';
 import { UpdateMenuForm } from './UpdateForm';

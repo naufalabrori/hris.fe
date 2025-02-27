@@ -25,8 +25,8 @@ import { RoleColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { Role } from '@/types/Role/type';
-import { useListRole } from '@/hooks/Services/Role/useGetRoles';
+import { Role } from '@/types/MasterData/Role/type';
+import { useListRole } from '@/hooks/Services/MasterData/Role/useGetRoles';
 import SearchInputField from '@/components/common/Input/SearchInputField';
 
 interface UseTableDataReturn<TData> {

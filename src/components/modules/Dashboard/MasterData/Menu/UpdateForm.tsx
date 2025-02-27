@@ -15,9 +15,9 @@ import {
 import { ChangeEvent, useEffect, useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateMenu } from '@/hooks/Services/Menu/useCreateUpdateMenu';
+import { useCreateUpdateMenu } from '@/hooks/Services/MasterData/Menu/useCreateUpdateMenu';
 import { toast } from 'react-toastify';
-import { Menu } from '@/types/Menu/type';
+import { Menu } from '@/types/MasterData/Menu/type';
 import InputField from '@/components/common/Input/InputField';
 
 const MenuSchema = z.object({

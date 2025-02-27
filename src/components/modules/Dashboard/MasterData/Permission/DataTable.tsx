@@ -25,8 +25,8 @@ import { PermissionColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { Permission } from '@/types/Permission/type';
-import { useListPermission } from '@/hooks/Services/Permission/useGetPermissions';
+import { Permission } from '@/types/MasterData/Permission/type';
+import { useListPermission } from '@/hooks/Services/MasterData/Permission/useGetPermissions';
 import SearchInputField from '@/components/common/Input/SearchInputField';
 
 interface UseTableDataReturn<TData> {

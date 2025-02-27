@@ -25,8 +25,8 @@ import { UserColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { User } from '@/types/User/type';
-import { useListUser } from '@/hooks/Services/User/useGetUsers';
+import { User } from '@/types/MasterData/User/type';
+import { useListUser } from '@/hooks/Services/MasterData/User/useGetUsers';
 import SearchInputField from '@/components/common/Input/SearchInputField';
 
 interface UseTableDataReturn<TData> {

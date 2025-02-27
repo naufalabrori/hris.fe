@@ -1,5 +1,5 @@
 'use client';
-import { useUserPermission } from '@/hooks/Services/Permission/useGetUserPermission';
+import { useUserPermission } from '@/hooks/Services/MasterData/Permission/useGetUserPermission';
 import { PERMISSION_COOKIES_KEY } from '@/lib/constant';
 import { useAuthStore } from '@/store/authStore';
 import { usePermissionStore } from '@/store/permissionStore';

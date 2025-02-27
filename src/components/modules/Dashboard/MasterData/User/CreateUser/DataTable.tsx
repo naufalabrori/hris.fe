@@ -25,8 +25,8 @@ import { EmployeeColumns } from './Columns';
 import { PaginationParams } from '@/types/PaginationType';
 import { useTablePagination } from '@/hooks/useTablePagination';
 import { useDebounce } from 'use-debounce';
-import { Employee } from '@/types/Employee/type';
-import { useListEmployee } from '@/hooks/Services/Employee/useGetEmployee';
+import { Employee } from '@/types/HumanResource/Employee/type';
+import { useListEmployee } from '@/hooks/Services/HumanResource/Employee/useGetEmployee';
 import SearchInputField from '@/components/common/Input/SearchInputField';
 
 interface UseTableDataReturn<TData> {

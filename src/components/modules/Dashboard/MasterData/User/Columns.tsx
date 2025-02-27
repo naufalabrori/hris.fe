@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
-import { User } from '@/types/User/type';
+import { User } from '@/types/MasterData/User/type';
 import { useMemo } from 'react';
 import { formatDateTime } from '@/lib/functions';
 import { usePermissionStore } from '@/store/permissionStore';

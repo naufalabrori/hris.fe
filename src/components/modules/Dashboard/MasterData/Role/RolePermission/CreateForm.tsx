@@ -14,9 +14,9 @@ import {
 import { useState } from 'react';
 import { z } from 'zod';
 import { useQueryClient } from '@tanstack/react-query';
-import { useCreateUpdateRolePermission } from '@/hooks/Services/RolePermission/useCreateUpdateRolePermission';
+import { useCreateUpdateRolePermission } from '@/hooks/Services/MasterData/RolePermission/useCreateUpdateRolePermission';
 import { toast } from 'react-toastify';
-import { useListPermission } from '@/hooks/Services/Permission/useGetPermissions';
+import { useListPermission } from '@/hooks/Services/MasterData/Permission/useGetPermissions';
 import Autocomplete from '@/components/common/AutoComplete/Autocomplete';
 
 const RolePermissionSchema = z.object({

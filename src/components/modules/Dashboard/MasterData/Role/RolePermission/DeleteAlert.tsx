@@ -11,7 +11,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { useDeleteRolePermission } from '@/hooks/Services/RolePermission/useDeleteRolePermission';
+import { useDeleteRolePermission } from '@/hooks/Services/MasterData/RolePermission/useDeleteRolePermission';
 import { useQueryClient } from '@tanstack/react-query';
 import { Trash2Icon } from 'lucide-react';
 import { useState } from 'react';

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
-import { Employee } from '@/types/Employee/type';
+import { Employee } from '@/types/HumanResource/Employee/type';
 import { useMemo, useState } from 'react';
 
 export const EmployeeColumns = ({ onChoose }: any) => {

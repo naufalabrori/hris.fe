@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { ChangeEvent, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useLoginUser } from '@/hooks/Services/User/useLoginUser';
+import { useLoginUser } from '@/hooks/Services/MasterData/User/useLoginUser';
 import { Loader2 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 import { useTokenStore } from '@/store/tokenStore';
