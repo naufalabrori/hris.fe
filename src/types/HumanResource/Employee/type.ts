@@ -15,3 +15,7 @@ export type Employee = BaseType & {
   employmentStatus: string;
   salary: number;
 };
+
+export type EmployeeExt = Employee & {
+  departmentName: string;
+};

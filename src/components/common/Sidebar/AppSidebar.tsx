@@ -48,11 +48,6 @@ const menus = [
         url: '/masterdata/menu',
         permission: 'VIEW.MENU',
       },
-      {
-        title: 'Department',
-        url: '/masterdata/department',
-        permission: 'VIEW.DEPARTMENT',
-      },
     ],
   },
   {
@@ -93,6 +88,11 @@ const menus = [
         title: 'Job Title',
         url: '/hr/job-title',
         permission: 'VIEW.JOB_TITLE',
+      },
+      {
+        title: 'Department',
+        url: '/hr/department',
+        permission: 'VIEW.DEPARTMENT',
       },
       {
         title: 'Employee',
