@@ -58,6 +58,9 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
   const { mutate, isPending } = useCreateUpdateJobTitle(data?.id);
 
   const handleSubmit = () => {
+    form.minSalary = Number(form.minSalary);
+    form.maxSalary = Number(form.maxSalary);
+
     const result = JobTitleSchema.safeParse(form);
 
     if (!result.success) {
