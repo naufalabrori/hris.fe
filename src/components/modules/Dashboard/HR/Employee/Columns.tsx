@@ -8,6 +8,10 @@ import { UpdateEmployeeForm } from './UpdateForm';
 import { usePermissionStore } from '@/store/permissionStore';
 import { ProtectedComponent } from '@/components/common/ProtectedComponent';
 import { Badge } from '@/components/ui/badge';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { EyeIcon } from 'lucide-react';
 
 interface ColumnEmployee {
   currentPage: number;
@@ -16,6 +20,7 @@ interface ColumnEmployee {
 
 export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
   const { hasPermission } = usePermissionStore();
+  const pathname = usePathname();
 
   const columns = useMemo<ColumnDef<any, Employee>[]>(
     () => [
@@ -134,6 +139,13 @@ export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
                 };
                 return (
                   <>
+                    <ProtectedComponent permission="VIEW.EMPLOYEE">
+                      <Link href={`${pathname}/${id}`}>
+                        <Button className="mr-1 bg-blue-500 hover:bg-blue-600 p-3">
+                          <EyeIcon />
+                        </Button>
+                      </Link>
+                    </ProtectedComponent>
                     <ProtectedComponent permission="UPDATE.EMPLOYEE">
                       <UpdateEmployeeForm data={masterData} />
                     </ProtectedComponent>
@@ -144,7 +156,7 @@ export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
           ]
         : []),
     ],
-    [currentPage, perPage, hasPermission]
+    [currentPage, perPage, hasPermission, pathname]
   );
 
   return columns;
