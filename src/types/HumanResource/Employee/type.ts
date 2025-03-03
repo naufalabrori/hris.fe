@@ -4,11 +4,11 @@ export type Employee = BaseType & {
   firstName: string;
   lastName: string;
   gender: string;
-  dateOfBirth: string;
+  dateOfBirth: Date;
   email: string;
   phoneNumber: string;
   address: string;
-  hireDate: string;
+  hireDate: Date;
   jobTitleId: string;
   departmentId: string;
   managerId: string;
@@ -18,4 +18,6 @@ export type Employee = BaseType & {
 
 export type EmployeeExt = Employee & {
   departmentName: string;
+  jobName: string;
+  managerName: string;
 };

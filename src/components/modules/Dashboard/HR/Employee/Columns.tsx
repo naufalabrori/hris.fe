@@ -4,9 +4,9 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Employee } from '@/types/HumanResource/Employee/type';
 import { useMemo } from 'react';
 import { formatDate, formatDateTime } from '@/lib/functions';
-// import { UpdateEmployeeForm } from './UpdateForm';
-// import { usePermissionStore } from '@/store/permissionStore';
-// import { ProtectedComponent } from '@/components/common/ProtectedComponent';
+import { UpdateEmployeeForm } from './UpdateForm';
+import { usePermissionStore } from '@/store/permissionStore';
+import { ProtectedComponent } from '@/components/common/ProtectedComponent';
 import { Badge } from '@/components/ui/badge';
 
 interface ColumnEmployee {
@@ -15,7 +15,7 @@ interface ColumnEmployee {
 }
 
 export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
-  // const { hasPermission } = usePermissionStore();
+  const { hasPermission } = usePermissionStore();
 
   const columns = useMemo<ColumnDef<any, Employee>[]>(
     () => [
@@ -48,6 +48,10 @@ export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
         accessorKey: 'dateOfBirth',
         header: () => 'Date of Birth',
         cell: ({ row }) => formatDate(row.getValue('dateOfBirth')),
+      },
+      {
+        accessorKey: 'jobName',
+        header: () => 'Job Name',
       },
       {
         accessorKey: 'departmentName',
@@ -87,36 +91,60 @@ export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
         header: () => 'Modified Date',
         cell: ({ row }) => formatDateTime(row.getValue('modifiedDate')),
       },
-      // ...(hasPermission('UPDATE.JOB_TITLE')
-      //   ? [
-      //       {
-      //         id: 'actions',
-      //         header: 'Action',
-      //         cell: (info: any) => {
-      //           const { id, title, description, minSalary, maxSalary, isActive } =
-      //             info.row.original;
+      ...(hasPermission('UPDATE.EMPLOYEE')
+        ? [
+            {
+              id: 'actions',
+              header: 'Action',
+              cell: (info: any) => {
+                const {
+                  id,
+                  firstName,
+                  lastName,
+                  gender,
+                  dateOfBirth,
+                  email,
+                  phoneNumber,
+                  address,
+                  hireDate,
+                  jobTitleId,
+                  departmentId,
+                  managerId,
+                  employmentStatus,
+                  salary,
+                  isActive,
+                } = info.row.original;
 
-      //           const masterData = {
-      //             id,
-      //             title,
-      //             description,
-      //             minSalary,
-      //             maxSalary,
-      //             isActive,
-      //           };
-      //           return (
-      //             <>
-      //               <ProtectedComponent permission="UPDATE.JOB_TITLE">
-      //                 <UpdateEmployeeForm data={masterData} />
-      //               </ProtectedComponent>
-      //             </>
-      //           );
-      //         },
-      //       },
-      //     ]
-      //   : []),
+                const masterData = {
+                  id,
+                  firstName,
+                  lastName,
+                  gender,
+                  dateOfBirth,
+                  email,
+                  phoneNumber,
+                  address,
+                  hireDate,
+                  jobTitleId,
+                  departmentId,
+                  managerId,
+                  employmentStatus,
+                  salary,
+                  isActive,
+                };
+                return (
+                  <>
+                    <ProtectedComponent permission="UPDATE.EMPLOYEE">
+                      <UpdateEmployeeForm data={masterData} />
+                    </ProtectedComponent>
+                  </>
+                );
+              },
+            },
+          ]
+        : []),
     ],
-    [currentPage, perPage]
+    [currentPage, perPage, hasPermission]
   );
 
   return columns;
