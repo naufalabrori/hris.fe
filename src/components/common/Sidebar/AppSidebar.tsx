@@ -1,6 +1,13 @@
 'use client';
 import * as React from 'react';
-import { ChevronRight, LayoutDashboardIcon } from 'lucide-react';
+import {
+  Activity,
+  ChevronRight,
+  DatabaseZap,
+  LayoutDashboardIcon,
+  Users,
+  Wallet,
+} from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   Sidebar,
@@ -26,7 +33,7 @@ const menus = [
   {
     title: 'Master Data',
     url: 'masterdata',
-    icon: <LayoutDashboardIcon />,
+    icon: <DatabaseZap />,
     items: [
       {
         title: 'User',
@@ -53,7 +60,7 @@ const menus = [
   {
     title: 'Activity',
     url: 'activity',
-    icon: <LayoutDashboardIcon />,
+    icon: <Activity />,
     items: [
       {
         title: 'Attendance',
@@ -70,7 +77,7 @@ const menus = [
   {
     title: 'Finance',
     url: 'finance',
-    icon: <LayoutDashboardIcon />,
+    icon: <Wallet />,
     items: [
       {
         title: 'Payroll',
@@ -82,7 +89,7 @@ const menus = [
   {
     title: 'Human Resource',
     url: 'hr',
-    icon: <LayoutDashboardIcon />,
+    icon: <Users />,
     items: [
       {
         title: 'Job Title',
