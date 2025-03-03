@@ -104,6 +104,11 @@ const menus = [
         url: '/hr/recruitment',
         permission: 'VIEW.RECRUITMENT',
       },
+      {
+        title: 'Training',
+        url: '/hr/training',
+        permission: 'VIEW.TRAINING',
+      },
     ],
   },
 ];
