@@ -88,7 +88,7 @@ export function UpdateMenuForm({ data }: { data: Menu }) {
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
-          className="mb-2 bg-yellow-500 hover:bg-yellow-600 mr-1"
+          className="bg-yellow-500 hover:bg-yellow-600"
           onClick={() => {
             setIsDialogOpen(true);
           }}
@@ -96,13 +96,13 @@ export function UpdateMenuForm({ data }: { data: Menu }) {
           <PenIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Update Menu</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Menu Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Menu Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Menu Name"
               type="text"

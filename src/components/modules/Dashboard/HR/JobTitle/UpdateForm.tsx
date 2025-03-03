@@ -100,7 +100,7 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
-          className="mb-2 bg-yellow-500 hover:bg-yellow-600 mr-1"
+          className="bg-yellow-500 hover:bg-yellow-600"
           onClick={() => {
             setIsDialogOpen(true);
           }}
@@ -108,13 +108,13 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
           <PenIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Update Job Title</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Job Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Job Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Job Name"
               type="text"
@@ -124,8 +124,8 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
               error={errors.title}
             />
           </div>
-          <div className="col-span-2">Description</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Description</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Description"
               type="text"
@@ -135,8 +135,8 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
               error={errors.description}
             />
           </div>
-          <div className="col-span-2">Min Salary</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Min Salary</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Min Salary"
               type="number"
@@ -146,8 +146,8 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
               error={errors.minSalary}
             />
           </div>
-          <div className="col-span-2">Max Salary</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Max Salary</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Max Salary"
               type="number"
@@ -157,8 +157,8 @@ export function UpdateJobTitleForm({ data }: { data: JobTitle }) {
               error={errors.maxSalary}
             />
           </div>
-          <div className="col-span-2">Is Active</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Is Active</div>
+          <div className="col-span-12 md:col-span-8">
             <Switch
               checked={form?.isActive}
               name="isActive"

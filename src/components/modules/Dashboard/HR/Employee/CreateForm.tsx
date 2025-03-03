@@ -142,13 +142,13 @@ export function CreateEmployeeForm() {
           Create
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Create Employee</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">First Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">First Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert First Name"
               type="text"
@@ -158,8 +158,8 @@ export function CreateEmployeeForm() {
               error={errors.firstName}
             />
           </div>
-          <div className="col-span-2">Last Name</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Last Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Last Name"
               type="text"
@@ -169,8 +169,8 @@ export function CreateEmployeeForm() {
               error={errors.lastName}
             />
           </div>
-          <div className="col-span-2">Gender</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Gender</div>
+          <div className="col-span-12 md:col-span-8">
             <SelectField
               placeholder="Select Gender..."
               options={[
@@ -191,8 +191,8 @@ export function CreateEmployeeForm() {
               error={errors.gender}
             />
           </div>
-          <div className="col-span-2">Date of Birth</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Date of Birth</div>
+          <div className="col-span-12 md:col-span-8">
             <DatePicker
               placeholder="Select Date of Birth"
               value={form.dateOfBirth}
@@ -209,8 +209,8 @@ export function CreateEmployeeForm() {
               error={errors.dateOfBirth}
             />
           </div>
-          <div className="col-span-2">Email</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Email</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Email"
               type="email"
@@ -220,8 +220,8 @@ export function CreateEmployeeForm() {
               error={errors.email}
             />
           </div>
-          <div className="col-span-2">Phone Number</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Phone Number</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Phone Number"
               type="text"
@@ -231,8 +231,8 @@ export function CreateEmployeeForm() {
               error={errors.phoneNumber}
             />
           </div>
-          <div className="col-span-2">Address</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Address</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Address"
               type="text"
@@ -242,8 +242,8 @@ export function CreateEmployeeForm() {
               error={errors.address}
             />
           </div>
-          <div className="col-span-2">Hire Date</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Hire Date</div>
+          <div className="col-span-12 md:col-span-8">
             <DatePicker
               placeholder="Select Hire Date"
               value={form.hireDate}
@@ -260,8 +260,8 @@ export function CreateEmployeeForm() {
               error={errors.hireDate}
             />
           </div>
-          <div className="col-span-2">Job Title</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Job Title</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Job Title"
               placeholder="Select Job Title..."
@@ -285,8 +285,8 @@ export function CreateEmployeeForm() {
               error={errors.jobTitleId}
             />
           </div>
-          <div className="col-span-2">Department</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Department</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Department"
               placeholder="Select Department..."
@@ -310,8 +310,8 @@ export function CreateEmployeeForm() {
               error={errors.departmentId}
             />
           </div>
-          <div className="col-span-2">Manager</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Manager</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Manager"
               placeholder="Select Manager..."
@@ -335,8 +335,8 @@ export function CreateEmployeeForm() {
               error={errors.managerId}
             />
           </div>
-          <div className="col-span-2">Salary</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Salary</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Salary"
               type="number"

@@ -138,10 +138,10 @@ export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
                   isActive,
                 };
                 return (
-                  <>
+                  <div className="flex items-center flex-col md:flex-row gap-1">
                     <ProtectedComponent permission="VIEW.EMPLOYEE">
                       <Link href={`${pathname}/${id}`}>
-                        <Button className="mr-1 bg-blue-500 hover:bg-blue-600 p-3">
+                        <Button className="bg-blue-500 hover:bg-blue-600">
                           <EyeIcon />
                         </Button>
                       </Link>
@@ -149,7 +149,7 @@ export const EmployeeColumns = ({ currentPage, perPage }: ColumnEmployee) => {
                     <ProtectedComponent permission="UPDATE.EMPLOYEE">
                       <UpdateEmployeeForm data={masterData} />
                     </ProtectedComponent>
-                  </>
+                  </div>
                 );
               },
             },

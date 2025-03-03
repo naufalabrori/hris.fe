@@ -125,7 +125,7 @@ export function EmployeeUserDataTable({ dataMaster }: { dataMaster: any }) {
   };
 
   return (
-    <div className="space-y-2 w-full">
+    <div className="space-y-2 w-full overflow-scroll mt-1">
       <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
         <div>
           <div className="flex gap-2 mb-2">

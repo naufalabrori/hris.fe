@@ -55,14 +55,14 @@ export const MenuColumns = ({ currentPage, perPage }: ColumnMenu) => {
                   menuName,
                 };
                 return (
-                  <>
+                  <div className="flex items-center flex-col md:flex-row gap-1">
                     <ProtectedComponent permission="UPDATE.MENU">
                       <UpdateMenuForm data={masterData} />
                     </ProtectedComponent>
                     <ProtectedComponent permission="DELETE.MENU">
                       <DeleteMenuAlert id={id} />
                     </ProtectedComponent>
-                  </>
+                  </div>
                 );
               },
             },

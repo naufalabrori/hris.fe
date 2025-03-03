@@ -106,9 +106,9 @@ export function CreateJobTitleForm() {
         <DialogHeader className="mb-2">
           <DialogTitle>Create Job Title</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Job Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Job Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Job Name"
               type="text"
@@ -118,8 +118,8 @@ export function CreateJobTitleForm() {
               error={errors.title}
             />
           </div>
-          <div className="col-span-2">Description</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Description</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Description"
               type="text"
@@ -129,8 +129,8 @@ export function CreateJobTitleForm() {
               error={errors.description}
             />
           </div>
-          <div className="col-span-2">Min Salary</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Min Salary</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Min Salary"
               type="number"
@@ -140,8 +140,8 @@ export function CreateJobTitleForm() {
               error={errors.minSalary}
             />
           </div>
-          <div className="col-span-2">Max Salary</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Max Salary</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Max Salary"
               type="number"

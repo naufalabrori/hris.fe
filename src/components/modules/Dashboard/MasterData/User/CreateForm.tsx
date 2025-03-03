@@ -114,18 +114,18 @@ export function CreateUserForm() {
           Create
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl lg:max-w-[1000px]">
+      <DialogContent className="sm:max-w-xl md:max-w-[1000px] max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Create User</DialogTitle>
         </DialogHeader>
         <EmployeeUserDataTable dataMaster={handleData} />
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Email</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Email</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField placeholder="Insert email" value={master?.email || ''} readOnly disable />
           </div>
-          <div className="col-span-2">Username</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Username</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert username"
               name="username"

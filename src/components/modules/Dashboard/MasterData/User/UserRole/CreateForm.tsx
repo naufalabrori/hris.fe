@@ -98,11 +98,12 @@ export function CreateUserRoleForm({ userId }: { userId: string }) {
         <DialogHeader className="mb-2">
           <DialogTitle>Create Role User Role</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Role</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Role</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Role"
+              isModal
               placeholder="Select Role..."
               data={
                 listRole?.data.map((item) => ({

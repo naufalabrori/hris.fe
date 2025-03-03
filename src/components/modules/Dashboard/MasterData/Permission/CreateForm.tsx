@@ -106,13 +106,13 @@ export function CreatePermissionForm() {
           Create
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Create Permission</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Permission Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Permission Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Permission Name"
               type="text"
@@ -122,10 +122,8 @@ export function CreatePermissionForm() {
               error={errors.permissionName}
             />
           </div>
-        </div>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Resource</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Resource</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Menu"
               placeholder="Select Menu..."
@@ -149,10 +147,8 @@ export function CreatePermissionForm() {
               error={errors.resource}
             />
           </div>
-        </div>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Action</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Action</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Action"
               type="text"

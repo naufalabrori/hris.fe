@@ -93,13 +93,13 @@ export function CreateMenuForm() {
           Create
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Create Menu</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Menu Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Menu Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Menu Name"
               type="text"

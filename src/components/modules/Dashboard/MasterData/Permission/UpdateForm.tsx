@@ -101,7 +101,7 @@ export function UpdatePermissionForm({ data }: { data: Permission }) {
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
-          className="mb-2 bg-yellow-500 hover:bg-yellow-600 mr-1"
+          className="bg-yellow-500 hover:bg-yellow-600"
           onClick={() => {
             setIsDialogOpen(true);
           }}
@@ -109,7 +109,7 @@ export function UpdatePermissionForm({ data }: { data: Permission }) {
           <PenIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
           <DialogTitle>Update Permission</DialogTitle>
         </DialogHeader>
@@ -125,8 +125,6 @@ export function UpdatePermissionForm({ data }: { data: Permission }) {
               error={errors.permissionName}
             />
           </div>
-        </div>
-        <div className="grid grid-cols-5 gap-2">
           <div className="col-span-2">Resource</div>
           <div className="col-span-3">
             <Autocomplete
@@ -152,8 +150,6 @@ export function UpdatePermissionForm({ data }: { data: Permission }) {
               error={errors.resource}
             />
           </div>
-        </div>
-        <div className="grid grid-cols-5 gap-2">
           <div className="col-span-2">Action</div>
           <div className="col-span-3">
             <InputField

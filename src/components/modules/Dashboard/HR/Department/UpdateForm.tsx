@@ -104,7 +104,7 @@ export function UpdateDepartmentForm({ data }: { data: Department }) {
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
-          className="mb-2 bg-yellow-500 hover:bg-yellow-600 mr-1"
+          className="bg-yellow-500 hover:bg-yellow-600"
           onClick={() => {
             setIsDialogOpen(true);
           }}
@@ -112,13 +112,13 @@ export function UpdateDepartmentForm({ data }: { data: Department }) {
           <PenIcon />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent className="sm:max-w-xl max-h-full overflow-scroll">
         <DialogHeader className="mb-2">
-          <DialogTitle>Update Job Title</DialogTitle>
+          <DialogTitle>Update Department</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Department Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Department Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Department Name"
               type="text"
@@ -128,8 +128,8 @@ export function UpdateDepartmentForm({ data }: { data: Department }) {
               error={errors.departmentName}
             />
           </div>
-          <div className="col-span-2">Location</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Location</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Location"
               type="text"
@@ -139,8 +139,8 @@ export function UpdateDepartmentForm({ data }: { data: Department }) {
               error={errors.location}
             />
           </div>
-          <div className="col-span-2">Manager</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Manager</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Manager"
               placeholder="Select Manager..."
@@ -164,8 +164,8 @@ export function UpdateDepartmentForm({ data }: { data: Department }) {
               error={errors.managerId}
             />
           </div>
-          <div className="col-span-2">Is Active</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Is Active</div>
+          <div className="col-span-12 md:col-span-8">
             <Switch
               checked={form?.isActive}
               name="isActive"

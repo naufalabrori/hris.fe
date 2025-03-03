@@ -110,9 +110,9 @@ export function CreateDepartmentForm() {
         <DialogHeader className="mb-2">
           <DialogTitle>Create Department</DialogTitle>
         </DialogHeader>
-        <div className="grid grid-cols-5 gap-2">
-          <div className="col-span-2">Department Name</div>
-          <div className="col-span-3">
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12 md:col-span-4">Department Name</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Department Name"
               type="text"
@@ -122,8 +122,8 @@ export function CreateDepartmentForm() {
               error={errors.departmentName}
             />
           </div>
-          <div className="col-span-2">Location</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Location</div>
+          <div className="col-span-12 md:col-span-8">
             <InputField
               placeholder="Insert Location"
               type="text"
@@ -133,8 +133,8 @@ export function CreateDepartmentForm() {
               error={errors.location}
             />
           </div>
-          <div className="col-span-2">Manager</div>
-          <div className="col-span-3">
+          <div className="col-span-12 md:col-span-4">Manager</div>
+          <div className="col-span-12 md:col-span-8">
             <Autocomplete
               label="Manager"
               placeholder="Select Manager..."

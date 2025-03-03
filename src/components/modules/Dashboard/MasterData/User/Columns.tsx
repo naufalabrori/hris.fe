@@ -66,7 +66,7 @@ export const UserColumns = ({ currentPage, perPage }: ColumnUser) => {
                   <>
                     <ProtectedComponent permission="VIEW.USER">
                       <Link href={`${pathname}/${id}`}>
-                        <Button className="mr-1 bg-blue-500 hover:bg-blue-600 p-3">
+                        <Button className="bg-blue-500 hover:bg-blue-600">
                           <EyeIcon />
                         </Button>
                       </Link>
