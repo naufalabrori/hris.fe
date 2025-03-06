@@ -4,8 +4,23 @@ import { NotPermitted } from '@/components/common/NotPermitted';
 import { ProtectedComponent } from '@/components/common/ProtectedComponent';
 import { DepartmentDataTable } from '@/components/modules/Dashboard/HR/Department/DataTable';
 import { CreateDepartmentForm } from '@/components/modules/Dashboard/HR/Department/CreateForm';
+import useMenuStore from '@/hooks/useMenuStore';
+import { useEffect } from 'react';
 
 export default function DepartmentPage() {
+  const { setMenu } = useMenuStore();
+
+  useEffect(() => {
+    const breadcrumb = [
+      {
+        path: '/dashboard/hr/department',
+        name: 'Department',
+      },
+    ];
+
+    setMenu(breadcrumb);
+  }, [setMenu]);
+
   const { hasPermission } = usePermissionStore();
 
   return hasPermission('VIEW.DEPARTMENT') ? (

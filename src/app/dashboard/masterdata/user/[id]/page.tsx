@@ -5,10 +5,29 @@ import { CreateUserRoleForm } from '@/components/modules/Dashboard/MasterData/Us
 import { UserRoleDataTable } from '@/components/modules/Dashboard/MasterData/User/UserRole/DataTable';
 import { UserForm } from '@/components/modules/Dashboard/MasterData/User/UserRole/UserForm';
 import { Button } from '@/components/ui/button';
+import useMenuStore from '@/hooks/useMenuStore';
 import { usePermissionStore } from '@/store/permissionStore';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function UserRolePage({ params }: { params: { id: string } }) {
+  const { setMenu } = useMenuStore();
+
+  useEffect(() => {
+    const breadcrumb = [
+      {
+        path: '/dashboard/masterdata/user',
+        name: 'User',
+      },
+      {
+        path: `/dashboard/masterdata/user/${params.id}`,
+        name: 'View User',
+      },
+    ];
+
+    setMenu(breadcrumb);
+  }, [setMenu, params.id]);
+
   const { hasPermission } = usePermissionStore();
   const router = useRouter();
 

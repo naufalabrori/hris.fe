@@ -36,9 +36,14 @@ export function DataTablePagination({
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-2">
       <div className="text-xs text-muted-foreground font-semibold">
-        Showing {(currentPage - 1) * limit + 1} to {Math.min(currentPage * limit, total)} of {total}{' '}
-        entries
+        {total === 0
+          ? 'Showing 0 to 0 of 0 entries'
+          : `Showing ${(currentPage - 1) * limit + 1} to ${Math.min(
+              currentPage * limit,
+              total
+            )} of ${total} entries`}
       </div>
+
       <div className="flex flex-wrap items-center gap-1">
         {/* Previous Button */}
         <Button

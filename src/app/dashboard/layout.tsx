@@ -56,7 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   <BreadcrumbList>
                     <BreadcrumbItem className="hidden md:block">
                       {isDashboardChild ? (
-                        <Link href="/administrator">
+                        <Link href="/dashboard">
                           <BreadcrumbLink className="font-bold">Dashboard</BreadcrumbLink>
                         </Link>
                       ) : (
@@ -65,10 +65,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </BreadcrumbItem>
                     {isDashboardChild ? (
                       <>
-                        <BreadcrumbSeparator className="hidden md:block" />
-                        <BreadcrumbItem>
-                          <BreadcrumbPage className="font-bold">{menu}</BreadcrumbPage>
-                        </BreadcrumbItem>
+                        {menu.map((item, index) => (
+                          <>
+                            <BreadcrumbSeparator key={index} />
+                            <BreadcrumbItem key={index}>
+                              {index === menu.length - 1 ? (
+                                <BreadcrumbPage className="font-bold">{item.name}</BreadcrumbPage>
+                              ) : (
+                                <Link href={item.path}>
+                                  <BreadcrumbLink className="font-bold">{item.name}</BreadcrumbLink>
+                                </Link>
+                              )}
+                            </BreadcrumbItem>
+                          </>
+                        ))}
                       </>
                     ) : null}
                   </BreadcrumbList>

@@ -4,10 +4,29 @@ import { CreateBenefitForm } from '@/components/modules/Dashboard/HR/Employee/Be
 import { BenefitDataTable } from '@/components/modules/Dashboard/HR/Employee/Benefit/DataTable';
 import { EmployeeForm } from '@/components/modules/Dashboard/HR/Employee/EmployeeForm';
 import { Button } from '@/components/ui/button';
+import useMenuStore from '@/hooks/useMenuStore';
 import { usePermissionStore } from '@/store/permissionStore';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function EmployeeByIdPage({ params }: { params: { id: string } }) {
+  const { setMenu } = useMenuStore();
+
+  useEffect(() => {
+    const breadcrumb = [
+      {
+        path: '/dashboard/hr/employee',
+        name: 'Employee',
+      },
+      {
+        path: `/dashboard/hr/employee/${params.id}`,
+        name: 'View Employee',
+      },
+    ];
+
+    setMenu(breadcrumb);
+  }, [setMenu, params.id]);
+
   const { hasPermission } = usePermissionStore();
   const router = useRouter();
 

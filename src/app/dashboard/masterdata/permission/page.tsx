@@ -4,8 +4,23 @@ import { PermissionDataTable } from '@/components/modules/Dashboard/MasterData/P
 import { NotPermitted } from '@/components/common/NotPermitted';
 import { ProtectedComponent } from '@/components/common/ProtectedComponent';
 import { usePermissionStore } from '@/store/permissionStore';
+import useMenuStore from '@/hooks/useMenuStore';
+import { useEffect } from 'react';
 
 export default function PermissionPage() {
+  const { setMenu } = useMenuStore();
+
+  useEffect(() => {
+    const breadcrumb = [
+      {
+        path: '/dashboard/masterdata/permission',
+        name: 'Permission',
+      },
+    ];
+
+    setMenu(breadcrumb);
+  }, [setMenu]);
+
   const { hasPermission } = usePermissionStore();
 
   return hasPermission('VIEW.PERMISSION') ? (
