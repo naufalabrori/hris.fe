@@ -84,6 +84,11 @@ const menus = [
         url: '/finance/payroll',
         permission: 'VIEW.PAYROLL',
       },
+      {
+        title: 'Reimburse',
+        url: '/finance/reimburse',
+        permission: 'VIEW.REIMBURSE',
+      },
     ],
   },
   {
