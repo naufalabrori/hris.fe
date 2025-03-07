@@ -519,6 +519,7 @@ const SidebarMenuButton = React.forwardRef<
   React.ComponentProps<'button'> & {
     asChild?: boolean;
     isActive?: boolean;
+    keepOpenOnMobile?: boolean;
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
     onClick?: (event: React.MouseEvent) => void;
   } & VariantProps<typeof sidebarMenuButtonVariants>
@@ -527,6 +528,7 @@ const SidebarMenuButton = React.forwardRef<
     {
       asChild = false,
       isActive = false,
+      keepOpenOnMobile = false,
       variant = 'default',
       size = 'default',
       tooltip,
@@ -540,7 +542,8 @@ const SidebarMenuButton = React.forwardRef<
     const { isMobile, state, setOpenMobile } = useSidebar();
 
     const handleClick = (event: React.MouseEvent) => {
-      if (isMobile) {
+      // Only close the sidebar if we're on mobile AND this isn't a parent menu item
+      if (isMobile && !keepOpenOnMobile) {
         setOpenMobile(false);
       }
       onClick?.(event);
