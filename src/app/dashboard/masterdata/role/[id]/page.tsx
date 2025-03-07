@@ -4,12 +4,32 @@ import { CreateRolePermissionForm } from '@/components/modules/Dashboard/MasterD
 import { RolePermissionDataTable } from '@/components/modules/Dashboard/MasterData/Role/RolePermission/DataTable';
 import { RoleForm } from '@/components/modules/Dashboard/MasterData/Role/RolePermission/RoleForm';
 import { Button } from '@/components/ui/button';
+import useMenuStore from '@/hooks/useMenuStore';
 import { usePermissionStore } from '@/store/permissionStore';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
+  const { setMenu } = useMenuStore();
+
+  useEffect(() => {
+    const breadcrumb = [
+      {
+        path: '/dashboard/masterdata/role',
+        name: 'Role',
+      },
+      {
+        path: `/dashboard/masterdata/role/${params.id}`,
+        name: 'View Role',
+      },
+    ];
+
+    setMenu(breadcrumb);
+  }, [setMenu, params.id]);
+
   const { hasPermission } = usePermissionStore();
   const router = useRouter();
+
   return hasPermission('VIEW.ROLE') ? (
     <>
       <div className="bg-white p-4 rounded-md shadow-lg">

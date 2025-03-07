@@ -1,0 +1,66 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import { useApproveLeave } from '@/hooks/Services/Activity/Leave/useApproveLeave';
+import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+
+export function ApproveLeaveAlert({ id }: { id: string }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // Control dialog visibility
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useApproveLeave();
+
+  const handleSubmit = () => {
+    mutate(id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ['get-list-leave'],
+        });
+        toast('Leave Approved', { type: 'success' });
+      },
+      onError: (error: any) => {
+        toast(
+          error?.response?.data?.message || 'Terjadi kesalahan, silakan coba beberapa saat lagi.',
+          {
+            type: 'error',
+          }
+        );
+      },
+    });
+    setIsDialogOpen(false);
+  };
+
+  return (
+    <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <AlertDialogTrigger asChild>
+        <Button className="bg-green-500 hover:bg-green-600">Approve</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will approve this leave.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction disabled={isPending} onClick={handleSubmit}>
+            {isPending ? 'Approving...' : 'Approve'}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
